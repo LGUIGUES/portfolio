@@ -1,0 +1,910 @@
+/* *****************************************************************
+TOOLS
+***************************************************************** */
+
+* {
+	box-sizing: border-box; /* On spécifie que la largeur (width) de chaque boîte comprend le padding et la bordure (par défaut, c'est seulement la largeur du contenu) */
+}
+
+html {
+	font-size: 62.5%; /* 1rem = 10px (la formule est 10/16*100) la taille par défaut étant 16px */
+}
+/*
+body {
+	font-size: 1.6rem; /* on remets la taille du texte par défaut pour le body à 16px en utilisant les rem comme unité) 
+}*/
+
+/* *****************************************************************
+GLOBAL VALUES
+***************************************************************** */
+@font-face {
+    font-family: 'baloo-font';
+    src: url('../fonts/baloobhaina2-bold-webfont.woff2') format('woff2');
+    src: url('../fonts/baloobhaina2-bold-webfont.woff') format('woff');    
+    src: url('../fonts/BalooBhaina2-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'inter-font';
+    src: url('../fonts/inter-variablefont_slntwght-webfont.woff2') format('woff2');
+    src: url('../fonts/inter-variablefont_slntwght-webfont.woff') format('woff');    
+    src: url('../fonts/Inter-VariableFont_slnt,wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'scada-font';
+    src: url('../fonts/scada-bold-webfont.woff2') format('woff2');
+    src: url('../fonts/scada-bold-webfont.woff') format('woff');    
+    src: url('../fonts/Scada-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'icomoon';
+    src: url('../fonts/icomoon.eot?mtvijn');
+    src: url('../fonts/icomoon.eot?mtvijn#iefix') format('embedded-opentype'),
+         url('../fonts/icomoon.woff?mtvijn') format('woff'),
+         url('../fonts/icomoon.ttf?mtvijn') format('truetype'),     
+         url('../fonts/icomoon.svg?mtvijn#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+body {    
+    background: radial-gradient(rgba(71,78,184,1),rgba(95,100,150,1));
+    color: rgba(255,255,255,1);
+    font-family: 'inter-font', sans-serif;
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+}
+
+.no-scroll {
+    overflow-y: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: rgba(255,255,255,1);
+}
+
+p {
+    margin: 0 0 1.5rem 0;
+}
+
+h1,h2,h3 {
+    text-align: center;
+}
+
+h2 {
+    line-height: 4rem;
+}
+
+ul, li {
+    padding-left: 0;
+    list-style: none;
+}
+
+input, label, textarea {
+    width: 100%;
+}
+
+::after, ::before {
+    font-family: 'icomoon';  
+}
+
+article {
+    margin: 0 2rem;
+}
+
+article p, section p {    
+    text-align: justify;
+}
+
+section p {
+    margin: 0 2rem;
+}
+
+aside h1 {
+    line-height: 4rem;
+}
+
+header, footer {
+    background-color: rgba(71,78,184,1);
+    padding: 1rem 0;
+}
+
+.content {   
+    max-width: 1400px;
+    margin: 0 auto;    
+}
+
+/* Class clearfix for float image */
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+h1, h2, h3, a, p, label, span {
+    text-shadow: 2px 2px 2px rgba(0,0,0,.8);
+}
+
+/* Buttons */
+.button {
+    background-color: rgba(60,70,230,1);
+    border: none;
+    border-radius: 1rem;
+    color: rgba(255,255,255,1);
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+/* Links Animation */
+nav a, .address, .footer-nav a {
+    position: relative;
+    display: inline-block;
+}
+
+nav a::after, .address::after, .footer-nav a::after {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 1px;
+    background-color: rgba(255,255,255,1);    
+    width: 0;
+    transition: all 0.4s ease;
+    left: 0;
+}
+
+nav a:hover::after, .address:hover::after, .footer-nav a:hover::after {
+    width: 100%;
+}
+
+/* BreadCrumb */
+.breadcrumb {    
+    font-size: 1.4rem;
+    text-align: center;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.breadcrumb .first::before {    
+    content: '\e900';        
+    margin-right: 0.5rem;
+}
+
+.breadcrumb a, .chevron {
+    color: rgba(255,255,255,1);
+}
+
+.breadcrumb .chevron {
+    margin: 0 0.5rem;
+}
+
+.breadcrumb .current-page {
+    font-size: 1.4rem;
+}
+
+.current-page {
+    color: rgba(255,255,255,1);
+}
+
+/* Display message / errors */
+.success, .errors {
+    margin: 1rem 2rem;
+    padding: 0.5rem 1rem;
+    color: rgba(255,255,255,1);
+    border-radius: 1rem;
+}
+
+.success {
+    background-color: rgba(60,118,61,1);    
+}    
+
+.errors {
+    background-color: rgba(169,68,66,1);    
+}
+
+.success ul, .errors ul {
+    text-align: center;
+}
+
+/* *****************************************************************
+HEADER
+***************************************************************** */
+header {
+    position: relative;
+    display: flex;
+    justify-content:flex-end;        
+    min-height: 5rem;
+}
+
+/* Section menu burger */
+.burger-menu {    
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 65%;
+    height: 100%;
+    background-color: rgba(95,100,150,1);
+    z-index: 100;
+    transition: all 0.5s ease;
+}
+
+.burger-menu-open {    
+    left: 0;
+    transition: all 0.5s ease;
+}
+
+.burger-menu li {
+    margin-left: 1.5rem;
+    padding: 1rem 0;
+}
+
+.close-menu {
+    display: block;    
+    padding: 1rem 0;
+    margin: 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,1);
+}
+
+.close-menu::before {    
+    content: '\e901';    
+    font-size: 2rem;
+    margin-right: 1rem;    
+}
+
+.icon-burger-menu-closed::before {
+    content: url(../img/svg/bars-solid.svg);        
+    position: absolute;
+    top: 2.2rem;
+    left: 2rem;
+    color: rgba(255,0,0,1);
+    width: 2rem;
+    height: auto;
+}
+
+.logo {
+    position: absolute;
+    top: 5rem;
+    left: 1rem;
+    filter: drop-shadow(2px 2px 2px rgba(0,0,0,.8));
+}
+
+.logo img {
+    width: 50%;
+}
+
+.nav-laptop-desktop {
+    display: none;
+}
+
+.links .icon {
+    width: 2rem;
+    height: auto;
+    margin: 1.2rem 2rem 0 2rem;    
+}
+
+/* *****************************************************************
+HOME PAGE
+***************************************************************** */
+.intro {    
+    min-height: 20rem;
+    background-position: center;
+    background-image: url(../img/intro_1400.webp);
+}
+
+.animate-text {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;    
+    justify-content: center;
+    align-items: center;
+    min-height: 20rem;
+}
+
+.name, .job {
+    font-size: 3rem;
+    font-weight: bold;    
+}
+
+.name {
+    margin-top: 4rem;
+    font-family: 'scada-font';    
+    animation: anim-name 2s ease-in 0s 1;
+}
+
+.job {
+    font-family: 'baloo-font';    
+    animation: anim-job 2s linear 0s 1;
+}
+
+.presentation {    
+    text-align: justify;
+    margin: 2rem 0; 
+}
+
+.portrait {
+    position: relative;
+    width: 12.8rem;
+    height: 18.4rem;    
+    border: 1px solid rgba(0,0,0,.8);
+    border-radius: 2rem;
+    float: right;
+    margin-left: 3rem;
+    margin-right: 2rem;
+    margin-bottom: 2rem;
+}
+
+.portrait-img {
+    position: absolute;
+    top: 1rem;
+    left: -1rem;   
+    border-radius: 2rem;
+}
+
+@keyframes anim-name {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+        /* transform: translateX(-105rem); */
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        /* transform: translateX(0); */
+    }
+}
+
+@keyframes anim-job {
+    0% {
+        opacity: 0;
+        transform: translateY(-15rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fluid Animation Scrolling page */
+[class*="reveal-"] {
+    opacity: 0;
+    transform: translateY(-5rem);
+}
+
+.reveal-1 {
+   transition-delay: .1s;   
+}
+
+.reveal-2 {
+    transition-delay: .1s;
+}
+
+.reveal-3 {
+    transition-delay: .3s;
+}
+
+.reveal-4 {
+    transition-delay: .4s;
+}    
+
+.reveal-visible {
+    opacity: 1;   
+    transform: translateY(0);        
+    transition: 1s cubic-bezier(.5,0,0,1);   
+}
+
+/* Section Formation */
+.formations {
+    margin-top: 4rem;
+}
+
+.title-formation {
+    display: flex;
+    flex-direction: column;
+}
+
+.title-formation img {
+    margin-top: 0.5rem;
+}
+
+.flex-blocks {
+    display: flex;
+    flex-wrap: wrap;    
+    justify-content: center;    
+    margin-top: 2rem;
+    padding: 1rem;    
+}
+
+.block {
+    margin-bottom: 2rem;     
+}
+
+.block img {
+    width: 100%;
+    height: auto;
+    border-radius: 2rem;
+    box-shadow: 3px 3px 15px rgba(0,0,0,.8);
+}
+
+.thumbnail {
+    position: absolute;
+    top: -1rem;
+    right: 1rem;
+    width: 2rem;
+    height: auto;
+    background-color: rgba(255,255,255,1);
+    border-radius: 0.5rem;
+}
+
+/* Section contact */
+#contact {
+    cursor: pointer;
+}
+
+.border {
+    border: 1px solid rgba(60,70,230,1);
+    border-radius: 2rem;
+    margin: 0 2rem;
+}
+
+.contact {
+    margin-bottom: 2rem;
+}
+
+.home-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 2rem;        
+}
+
+.field, .value {
+    padding: 0.5rem 0;
+    width: 100%;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.info-required {
+    font-size: 1rem;
+    text-align: center;
+}
+
+.rgpd input {
+    margin-right: 0.5rem;
+}
+
+.rgpd {
+    margin-top: 1rem;
+    margin-left: 2rem;
+}
+
+.checkbox {
+    width: initial;
+}
+
+.rgpd a:hover {
+    border-bottom: 1px solid rgba(60,70,230,1);
+}
+
+.form-button {    
+    border-radius: 0 0 2rem 2rem;    
+}
+
+/* Affichage du formulaire de contact au click */
+.box-contact {
+    display: none;
+}
+
+.display-box-contact {
+    display: block;
+    margin-bottom: 2rem;
+}
+
+/* Legal notice */
+.legal-notice-off {
+    display: none;
+}
+
+.legal-notice-on {
+    background-color: rgba(0,0,0,.9);
+    display: block;
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;    
+}
+
+.legal-notice-container {
+    background-color: rgba(71,78,184,1);
+    position: absolute;
+    top: 25%;
+    left: 2rem;
+    right: 2rem;
+    height: 50%;    
+    overflow-y: scroll;
+    margin: auto;
+    padding: 2rem;
+}
+
+.close-modal {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    cursor: pointer;
+}
+
+.close-modal::before {
+    content: "\e902";
+    margin-right: 1rem;    
+}
+
+.modal-off {
+    display: none;
+}
+
+.legal-notice-on h3 {
+    text-align: left;
+}
+
+.date-legal-notice {
+    display: block;
+    text-align: center;    
+    margin-bottom: 2rem;
+}
+
+/* Phantom field for spam */
+.remarks {
+    display: none;
+}
+
+/* Section Adresse */
+address {
+    text-align: center;
+    margin: 2rem;
+    border: 1px solid rgba(255,255,255,1);
+    border-radius: 2rem;
+    padding-bottom: 2rem;
+}
+
+.title-address {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+.font-icon::before {
+    margin-right: 1rem;
+}    
+
+.address::before {
+    content: '\e903';    
+}
+
+.phone {
+    text-align: center;
+}
+
+.phone::before {    
+    content: '\e904';    
+}
+
+.email::before {
+    content: '\e905';
+}
+
+/* Affichage de la carte au click */
+.box-map {
+    display: none;
+    margin-top: 1rem;
+    padding: 0 1rem;
+}
+
+.display-map {
+    display: flex;
+    justify-content: center;
+    animation: map-anim 3s cubic-bezier(.5,0,0,1) 0s 1;    
+}
+
+.iframe-map {
+    margin-top: 1rem;
+    max-width: 100%;    
+}
+
+/* Animation sur affichage de la carte */
+@keyframes map-anim {
+    0% {             
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);       
+    }
+}
+
+.phone {
+    margin-top: 1rem;
+}
+
+/* *****************************************************************
+ABOUT PAGE
+***************************************************************** */
+.row-career {
+    margin-top: 3rem;
+}
+
+.row-career li {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.row-career li:nth-child(even) {
+    justify-content: right;
+}
+
+.career-panel, .career-panel {    
+    padding: 2rem;   
+    border-radius: 2rem;
+    width: 100%;
+    margin: 2rem 0;
+    box-shadow: 3px 3px 15px rgba(0,0,0,.8);
+}
+
+.panel-left {
+    background: linear-gradient(-45deg, rgba(71,78,184,1), rgba(170,175,235,1), rgba(71,78,184,1));    
+    justify-content: flex-start;
+}
+
+.panel-right {
+    background: linear-gradient(45deg, rgba(170,175,235,1), rgba(71,78,184,1), rgba(170,175,235,1));    
+    justify-content: flex-end;
+}
+
+.title-panel {
+    text-align: left;
+}
+
+.title-panel::before {
+    content: "\e906";
+    margin-right: 1rem;
+}
+
+.download {
+    display: block;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* *****************************************************************
+PRODUCTION PAGE / FORMATION PAGE / LEGAL NOTICE
+***************************************************************** */
+.formation {
+    margin-top: 5rem;
+}
+
+.visual {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.visual img {
+    max-width: 100%;
+    box-shadow: 3px 3px 15px rgba(0,0,0,.8);
+}
+
+.row-legal-notice h3 {
+    text-align: left;
+}
+
+/* *****************************************************************
+FOOTER
+***************************************************************** */
+footer {
+    position: relative;
+    text-align: center;
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: center;    
+}
+
+footer li {
+    font-size: 1.3rem;
+    margin: 0 1rem;
+}
+
+.copyright {
+    font-size: 1.2rem;
+    margin-bottom: 0;
+}
+
+.version {
+    font-size: 1rem;
+}
+
+/* *****************************************************************
+MEDIA QUERIES MOBILE LARGE 414px
+***************************************************************** */
+@media screen and (min-width: 414px) {
+
+    /* Formation / Production Page */
+    .formation {
+        margin-top: 3rem;
+    }
+    
+}
+/* *****************************************************************
+MEDIA QUERIES TABLETTE 768px
+***************************************************************** */
+@media screen and (min-width: 768px) {   
+
+    /* HEADER */
+    .logo {       
+        top: 5rem;
+        left: 1rem;
+    }
+
+    /* Burger Menu */
+    .icon-burger-menu-closed::before {
+        left: 3rem;
+    }
+    
+    .logo img {
+        width: 80%;
+    }
+
+    /* Home Page */
+    .intro, .animate-text {
+        min-height: 30rem;
+    }    
+
+    /* section Formation */
+    .block {
+        width: 47%;
+        margin-top: 1rem;
+        margin-left: 1rem;
+        margin-right: 1rem;     
+    }
+
+    address {
+        width: 50%;
+        margin: auto auto 1rem auto;
+    }
+    
+    /* Section Address */
+    .box-map {
+        margin: auto;
+    }
+
+    /* Formation / Production Page */
+    .row-formation, .row-production, .row-contact {
+        width: 763px;
+        margin: 0 auto;
+    }
+}
+/* *****************************************************************
+MEDIA QUERIES LAPTOP 1200px
+***************************************************************** */
+@media screen and (min-width: 1200px) {
+
+    .content {
+        margin-top: 6rem;
+    }    
+    
+    /* HEADER */
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 999;
+        justify-content: space-between;
+        box-shadow: 0px 1px 8px rgba(0,0,0,.8); 
+    }    
+
+    /* Section navigation */
+    .nav-containt {
+        display: flex;
+        align-items: flex-end;
+        margin: auto;
+    }
+
+    .nav-laptop-desktop {
+        display: block;
+    }
+
+    .nav-laptop-desktop a {
+        margin: 0 3rem;
+    }
+
+    .logo {
+        top: 1rem;
+        left: 1rem;
+    }
+
+    .logo img {
+        width: 100%;
+    }
+
+    /* Section Burger Menu */
+    .icon-burger-menu-closed {
+        display: none;
+    }
+
+    .breadcrumb {
+        margin-top: 7rem;
+    }
+
+    /* Home Page */
+    .intro, .animate-text {
+        min-height: 37rem;
+    }    
+    
+    .display-box-contact {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .checkbox {
+        width: 2rem;
+    }
+
+    .legal-notice-container {
+        left: 13%;
+        right: 13%;        
+        height: 50%;       
+    }
+
+    /* Contact Page */
+    .row-contact {
+        margin: 7rem auto 0 auto;        
+        width: 80%;        
+    }
+
+}
+/* *****************************************************************
+MEDIA QUERIES DESKTOP 1400px
+***************************************************************** */
+@media screen and (min-width: 1400px) {
+
+    /* HEADER */
+    header {
+        justify-content: space-around;
+    }    
+
+    .nav-containt {
+        max-width: 1400px;
+    }
+
+    /* Home Page */
+    .intro {
+        min-height: 45rem;
+    }
+    
+    .legal-notice-container {
+        left: 10%;
+        right: 10%;        
+        height: 50%;       
+    }
+}

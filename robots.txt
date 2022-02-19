@@ -1,0 +1,11 @@
+# robots.txt
+User-agent: *
+Allow: *
+# Private Directories
+Disallow: /configuration/
+Disallow: /controllers/
+Disallow: /models/
+Disallow: /projects/
+Disallow: /www/admin/
+# Sitemap
+Sitemap: https://www.lguiguesdeveloppement.fr/sitemap.xml

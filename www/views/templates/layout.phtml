@@ -3,11 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="shortcut icon" href="www/assets/img/favicon/favicon.ico" type="image/x-icon">
-    <meta name="title" content="Laurent GUIGUES | Développeur Web Fullstack Junior">    
+    <meta name="title" content="Laurent GUIGUES | Développeur Web Fullstack Junior">
     <meta name="description" content="<?= $metaDescription ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="www/assets/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="www/assets/css/style.css">
     <title><?= $titlePage ?></title>
@@ -15,7 +15,7 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.lguiguesdeveloppement.fr/">
-    <meta property="og:title" content="Laurent GUIGUES | Développeur Web Fullstack Junior">    
+    <meta property="og:title" content="Laurent GUIGUES | Développeur Web Fullstack Junior">
     <meta property="og:description" content="Découvrez mes compétences de développeur intégrateur web dans ce portfolio. Formé avec la 3W Académy pour apprendre les 5 principaux langages du web : Html, Css, Js, Php et Sql. Faite le tour et n'hésitez pas à me contacter.">
     <meta property="og:image" content="https://www.lguiguesdeveloppement.fr/www/assets/img/og/og_card.jpg">
     <meta property="og:image:alt" content="Portfolio de Laurent GUIGUES | Développeur Web Fullstack Junior">
@@ -31,53 +31,59 @@
 </head>
 
 <body class="scroll">
-    <header>
-        <div class="logo">
-            <a href="Laurent-Guigues"><img src="www/assets/img/logos/logo_lguiguesdeveloppement_min.webp" alt="Logo portfolio Laurent GUIGUES"></a>
-        </div>
-        <div class="nav-containt">
-            <nav class="nav-laptop-desktop">
-                <a href="Laurent-Guigues">Accueil</a>
-                <a href="a-propos">A propos</a>
-                <a href="ma-formation">Ma formation</a>
-                <a href="mes-realisations">Mes réalisations</a>
-                <a href="me-contacter">Me contacter</a>
-            </nav>
-            <span id="menuClosed" class="icon-burger-menu-closed"></span>
-            <div class="burger-menu">
-                <span id="closeMenu" class="close-menu">Menu</span>
-                <ul>
-                    <li><a href="Laurent-Guigues">Accueil</a></li>
-                    <li><a href="a-propos">A propos</a></li>
-                    <li><a href="ma-formation">Ma formation</a></li>
-                    <li><a href="mes-realisations">Mes réalisations</a></li>
-                    <li><a href="me-contacter">Me contacter</a></li>
-                </ul>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <a href="Laurent-Guigues"><img src="www/assets/img/logos/logo_lguiguesdeveloppement_min.webp" alt="Logo portfolio Laurent GUIGUES"></a>
             </div>
-            <div class="links">
-                <a href="https://github.com/LGUIGUES">
-                    <img class="icon" src="www/assets/img/svg/github-brands.svg" alt="Mon profil GitHub">
-                </a>
-                <a href="https://www.linkedin.com/in/laurent-guigues-25939b69/">
-                    <img class="icon" src="www/assets/img/svg/linkedin-brands.svg" alt="Mon profil Linkedin">
-                </a>
+            <div class="nav-containt">
+                <nav class="nav-laptop-desktop">
+                    <a href="Laurent-Guigues">Accueil</a>
+                    <a href="a-propos">A propos</a>
+                    <a href="ma-formation">Ma formation</a>
+                    <a href="mes-realisations">Mes réalisations</a>
+                    <a href="me-contacter">Me contacter</a>
+                </nav>
+                <span id="menuClosed" class="icon-burger-menu-closed"></span>
+                <div class="burger-menu">
+                    <span id="closeMenu" class="close-menu">Menu</span>
+                    <ul>
+                        <li><a href="Laurent-Guigues">Accueil</a></li>
+                        <li><a href="a-propos">A propos</a></li>
+                        <li><a href="ma-formation">Ma formation</a></li>
+                        <li><a href="mes-realisations">Mes réalisations</a></li>
+                        <li><a href="me-contacter">Me contacter</a></li>
+                    </ul>
+                </div>
+                <div class="links">
+                    <a href="https://github.com/LGUIGUES">
+                        <img class="icon" src="www/assets/img/svg/github-brands.svg" alt="Mon profil GitHub">
+                    </a>
+                    <a href="https://www.linkedin.com/in/laurent-guigues-25939b69/">
+                        <img class="icon" src="www/assets/img/svg/linkedin-brands.svg" alt="Mon profil Linkedin">
+                    </a>
+                </div>
             </div>
-        </div>
-    </header>
-    <main class="content">
-        <!-- Start Dynamic Part -->
-        <?php require $template . ".phtml" ?>
-        <!-- End Dynamic Part -->
-    </main>
-    <footer>
-        <ul class="footer-nav">            
-            <li><a href="mentions-legales">Mentions légales</a></li>            
-        </ul>
-        <p class="copyright">© GUIGUES Laurent 2021-<?= date('Y') ?></p>
+        </header>
+        <main class="content">
+            <!-- Start Dynamic Part -->
+            <?php require $template . ".phtml" ?>
+            <!-- End Dynamic Part -->
+        </main>
+        <footer>
+            <ul class="footer-nav">
+                <li><a href="mentions-legales">Mentions légales</a></li>
+            </ul>
+            <p class="copyright">© GUIGUES Laurent 2021-<?= date('Y') ?></p>
             <p class="version">Portfolio version 1.0</p>
-    </footer>    
-    <script src="www/assets/js/menu.js"></script>
+        </footer>
+        <div>
+            <span id="btnScrollTop" class="arrow-up hidden-btn-scroll"></span>
+        </div>
+    </div>
+    <script src="www/assets/js/menu.js"></script>    
     <script src="www/assets/js/animation.js"></script>
+    <script src="www/assets/js/app.js"></script>
     <noscript>Votre navigateur ne prends pas en charge le Javascript.</noscript>
 </body>
 

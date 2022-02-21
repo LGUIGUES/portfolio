@@ -1,19 +1,31 @@
-/* Resource free of p3fx.fr */
-$('<div></div>')
-		.attr('id','scrolltotop')
-		.hide()
-		.css({'z-index':'1000','position':'fixed','bottom':'1rem','right':'1rem','cursor':'pointer','width':'3rem','height':'3rem','background':'rgba(0,0,0,.5)'})
-		.appendTo('body')
-		.click(function(){
-			$('html,body').animate({scrollTop: 0}, 'slow');
-		});
-	$('<div></div>')
-		.css({'width':'0.6rem','height':'0.6rem','transform':'rotate(-135deg)','border':'solid #ffffff','border-width':'0 0.3rem 0.3rem 0','padding':'0.3rem','margin-top':'1rem','margin-left':'1rem'})
-		.appendTo('#scrolltotop');
-	$(window).scroll(function(){
-		if($(window).scrollTop()<500){
-			$('#scrolltotop').fadeOut();
-		}else{
-			$('#scrolltotop').fadeIn();
-		}
-	});
+/* Fonction Scroll vers haut de page */
+function scrollToTop() {
+
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth"
+    });
+}
+
+/** IMPORTANT --> DOMCONTENTLOADER **/
+document.addEventListener('DOMContentLoaded', function() {
+    
+    /* on cherche les boutons à écouter que l'on met dans une variable */
+    let btnScrollTop = document.getElementById('btnScrollTop');
+
+    /* on met en écoute au click les boutons et on appel la fontion correspondante */
+    window.addEventListener('scroll', function(e) {
+
+        if(window.scrollY > 400) {           
+                   
+            btnScrollTop.classList.remove('hidden-btn-scroll');                    
+        }
+        else {
+            btnScrollTop.classList.add('hidden-btn-scroll');
+        }
+        
+    });
+    
+    btnScrollTop.addEventListener('click',scrollToTop); 
+});

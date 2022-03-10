@@ -60,7 +60,7 @@ class ContactController
 
             } else {
 
-                $recipient = 'contact@lguiguesdeveloppement.fr';
+                $recipient = 'contact@laurentguigues.fr';
                 $lastName = $_POST['lastName'];
                 $firstName = $_POST['firstName'];
                 $email = $_POST['email'];

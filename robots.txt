@@ -8,4 +8,4 @@ Disallow: /models/
 Disallow: /projects/
 Disallow: /www/admin/
 # Sitemap
-Sitemap: https://www.lguiguesdeveloppement.fr/sitemap.xml
+Sitemap: https://www.laurentguigues.fr/sitemap.xml

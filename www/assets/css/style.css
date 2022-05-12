@@ -353,7 +353,7 @@ HOME PAGE
     animation: anim-job 2s linear 0s 1;
 }
 
-.presentation {    
+.presentation, .events {    
     text-align: justify;
     margin: 2rem 0; 
 }
@@ -375,6 +375,19 @@ HOME PAGE
     top: 1rem;
     left: -1rem;   
     border-radius: 2rem;
+}
+
+.events-links {
+    margin-left: 16rem;
+}
+
+.tosa-certification {
+    position: relative;
+    float: left;
+}
+
+.img-tosa-certification {
+    position: absolute;
 }
 
 @keyframes anim-name {
